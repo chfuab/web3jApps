@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ServiceDetails">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Title of the service:" />
+
+            <TextView
+                android:id="@+id/serviceTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginRight="@dimen/spacing_large"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Brief intro of the service:" />
+            <TextView
+                android:id="@+id/serviceIntroText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginRight="@dimen/spacing_large"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Price (wei):" />
+            <TextView
+                android:id="@+id/servicePriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginRight="@dimen/spacing_large"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="The service includes below documents:" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/serviceDetailsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="@android:color/white"
+                tools:listitem="@layout/file_list"/>
+            <Button
+                android:id="@+id/buttonPayService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pay Service"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

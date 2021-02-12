@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboard">
+
+    <fragment
+        android:id="@+id/request"
+        android:name="com.example.web3japps.Request"
+        android:label="fragment_request"
+        tools:layout="@layout/fragment_request" />
+    <fragment
+        android:id="@+id/dashboard"
+        android:name="com.example.web3japps.Dashboard"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/editService"
+        android:name="com.example.web3japps.EditService"
+        android:label="fragment_edit_service"
+        tools:layout="@layout/fragment_edit_service" />
+    <fragment
+        android:id="@+id/editRequest"
+        android:name="com.example.web3japps.EditRequest"
+        android:label="fragment_edit_request"
+        tools:layout="@layout/fragment_edit_request" />
+    <fragment
+        android:id="@+id/serviceDetails"
+        android:name="com.example.web3japps.ServiceDetails"
+        android:label="fragment_service_details"
+        tools:layout="@layout/fragment_service_details" />
+    <fragment
+        android:id="@+id/accountDetails"
+        android:name="com.example.web3japps.AccountDetails"
+        android:label="fragment_account_details"
+        tools:layout="@layout/fragment_account_details" />
+</navigation>

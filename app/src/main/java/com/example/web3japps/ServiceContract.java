@@ -1,0 +1,237 @@
+package com.example.web3japps;
+
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.Callable;
+import org.web3j.abi.TypeReference;
+import org.web3j.abi.datatypes.Address;
+import org.web3j.abi.datatypes.Bool;
+import org.web3j.abi.datatypes.DynamicArray;
+import org.web3j.abi.datatypes.Function;
+import org.web3j.abi.datatypes.Type;
+import org.web3j.abi.datatypes.Utf8String;
+import org.web3j.abi.datatypes.generated.Uint256;
+import org.web3j.crypto.Credentials;
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.RemoteCall;
+import org.web3j.protocol.core.RemoteFunctionCall;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.tx.Contract;
+import org.web3j.tx.TransactionManager;
+import org.web3j.tx.gas.ContractGasProvider;
+
+/**
+ * <p>Auto generated code.
+ * <p><strong>Do not modify!</strong>
+ * <p>Please use the <a href="https://docs.web3j.io/command_line.html">web3j command line tools</a>,
+ * or the org.web3j.codegen.SolidityFunctionWrapperGenerator in the 
+ * <a href="https://github.com/web3j/web3j/tree/master/codegen">codegen module</a> to update.
+ *
+ * <p>Generated with web3j version 4.8.1.
+ */
+@SuppressWarnings("rawtypes")
+public class ServiceContract extends Contract {
+    public static final String BINARY = "608060405234801561001057600080fd5b50611467806100206000396000f3fe6080604052600436106100f9576000357c0100000000000000000000000000000000000000000000000000000000900480638556b6741161009c578063e8b5e51f11610076578063e8b5e51f146108bc578063f00b9073146108c4578063f8326a5e1461098b578063f93f978d14610a3e576100f9565b80638556b674146106ba57806394a271fd146107f4578063d55ec11614610809576100f9565b80633fc13ebe116100d85780633fc13ebe146103b357806369e5e51714610468578063722713f71461056b578063794758be14610592576100f9565b80629f3ace146100fe578063046d3269146101b357806332cd406f146102f5575b600080fd5b34801561010a57600080fd5b506101b16004803603602081101561012157600080fd5b81019060208101813564010000000081111561013c57600080fd5b82018360208201111561014e57600080fd5b8035906020019184600183028401116401000000008311171561017057600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550610b0d945050505050565b005b3480156101bf57600080fd5b506101b1600480360360608110156101d657600080fd5b8101906020810181356401000000008111156101f157600080fd5b82018360208201111561020357600080fd5b8035906020019184600183028401116401000000008311171561022557600080fd5b91908080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152509295843595909490935060408101925060200135905064010000000081111561028057600080fd5b82018360208201111561029257600080fd5b803590602001918460018302840111640100000000831117156102b457600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550610c49945050505050565b34801561030157600080fd5b506101b16004803603604081101561031857600080fd5b81019060208101813564010000000081111561033357600080fd5b82018360208201111561034557600080fd5b8035906020019184600183028401116401000000008311171561036757600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955050509035600160a060020a03169150610d109050565b3480156103bf57600080fd5b506101b1600480360360408110156103d657600080fd5b8101906020810181356401000000008111156103f157600080fd5b82018360208201111561040357600080fd5b8035906020019184600183028401116401000000008311171561042557600080fd5b91908080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152509295505091359250610da0915050565b34801561047457600080fd5b5061051b6004803603602081101561048b57600080fd5b8101906020810181356401000000008111156104a657600080fd5b8201836020820111156104b857600080fd5b803590602001918460018302840111640100000000831117156104da57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550610e4f945050505050565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561055757818101518382015260200161053f565b505050509050019250505060405180910390f35b34801561057757600080fd5b50610580610f0b565b60408051918252519081900360200190f35b34801561059e57600080fd5b50610645600480360360208110156105b557600080fd5b8101906020810181356401000000008111156105d057600080fd5b8201836020820111156105e257600080fd5b8035906020019184600183028401116401000000008311171561060457600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550610f10945050505050565b6040805160208082528351818301528351919283929083019185019080838360005b8381101561067f578181015183820152602001610667565b50505050905090810190601f1680156106ac5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156106c657600080fd5b506101b1600480360360408110156106dd57600080fd5b8101906020810181356401000000008111156106f857600080fd5b82018360208201111561070a57600080fd5b8035906020019184600183028401116401000000008311171561072c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929594936020810193503591505064010000000081111561077f57600080fd5b82018360208201111561079157600080fd5b803590602001918460018302840111640100000000831117156107b357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550611020945050505050565b34801561080057600080fd5b506105806110b1565b34801561081557600080fd5b506101b16004803603602081101561082c57600080fd5b81019060208101813564010000000081111561084757600080fd5b82018360208201111561085957600080fd5b8035906020019184600183028401116401000000008311171561087b57600080fd5b91908080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152509295506110c4945050505050565b6101b1611178565b3480156108d057600080fd5b50610977600480360360208110156108e757600080fd5b81019060208101813564010000000081111561090257600080fd5b82018360208201111561091457600080fd5b8035906020019184600183028401116401000000008311171561093657600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955061118f945050505050565b604080519115158252519081900360200190f35b34801561099757600080fd5b50610580600480360360208110156109ae57600080fd5b8101906020810181356401000000008111156109c957600080fd5b8201836020820111156109db57600080fd5b803590602001918460018302840111640100000000831117156109fd57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550611254945050505050565b348015610a4a57600080fd5b50610af160048036036020811015610a6157600080fd5b810190602081018135640100000000811115610a7c57600080fd5b820183602082011115610a8e57600080fd5b80359060200191846001830284011164010000000083111715610ab057600080fd5b91908080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152509295506112c1945050505050565b60408051600160a060020a039092168252519081900360200190f35b6002816040518082805190602001908083835b60208310610b3f5780518252601f199092019160209182019101610b20565b51815160001960209485036101000a0190811690199190911617905292019485525060405193849003810190932060080180546001810182556000918252939020909201805473ffffffffffffffffffffffffffffffffffffffff19163317905550610bac90508161118f565b610c46576002816040518082805190602001908083835b60208310610be25780518252601f199092019160209182019101610bc3565b51815160001960209485036101000a0190811690199190911617905292019485525060405193849003810190932060040180546001810182556000918252939020909201805473ffffffffffffffffffffffffffffffffffffffff19163317905550505b50565b60006002846040518082805190602001908083835b60208310610c7d5780518252601f199092019160209182019101610c5e565b51815160209384036101000a600019018019909216911617905292019485525060405193849003810190932080543373ffffffffffffffffffffffffffffffffffffffff199182168117835560028301899055600483018054600181810183556000928352918890200180549093169091179091558651919550610d099490860193508601915061139e565b5050505050565b806001836040518082805190602001908083835b60208310610d435780518252601f199092019160209182019101610d24565b51815160209384036101000a60001901801990921691161790529201948552506040519384900301909220805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03949094169390931790925550505050565b610da98261118f565b610db257600080fd5b60006002836040518082805190602001908083835b60208310610de65780518252601f199092019160209182019101610dc7565b51815160209384036101000a600019018019909216911617905292019485525060405193849003810190932060068101805460018101825560008281529590952090940186905560058101549354909450915084905081610e4357fe5b04016005909101555050565b60606002826040518082805190602001908083835b60208310610e835780518252601f199092019160209182019101610e64565b51815160209384036101000a600019018019909216911617905292019485525060408051948590038201852060080180548084028701840190925281865293509150830182828015610efe57602002820191906000526020600020905b8154600160a060020a03168152600190910190602001808311610ee0575b505050505090505b919050565b303190565b6060610f1b8261118f565b610f2457600080fd5b60006002836040518082805190602001908083835b60208310610f585780518252601f199092019160209182019101610f39565b518151600019602094850361010090810a8201928316921993909316919091179092529490920196875260408051978890038201882060018181018054601f600293821615909902909601909516049586018390048302890183019091528488529750909450919250508301828280156110135780601f10610fe857610100808354040283529160200191611013565b820191906000526020600020905b815481529060010190602001808311610ff657829003601f168201915b5050505050915050919050565b60006002836040518082805190602001908083835b602083106110545780518252601f199092019160209182019101611035565b51815160209384036101000a600019018019909216911617905292019485525060405193849003810190932060038101805460018101825560009182529085902087519296506110ab95910193508601915061139e565b50505050565b3360009081526020819052604090205490565b60006002826040518082805190602001908083835b602083106110f85780518252601f1990920191602091820191016110d9565b51815160209384036101000a60001901801990921691161790529201948552506040519384900301909220805460028201549194506111429350600160a060020a03169150611332565b60040180546001810182556000918252602090912001805473ffffffffffffffffffffffffffffffffffffffff19163317905550565b336000908152602081905260409020805434019055565b6000806002836040518082805190602001908083835b602083106111c45780518252601f1990920191602091820191016111a5565b51815160209384036101000a60001901801990921691161790529201948552506040519384900301909220925060009150505b600482015481101561124a5733600160a060020a031682600401828154811061121c57fe5b600091825260209091200154600160a060020a0316141561124257600192505050610f06565b6001016111f7565b5060009392505050565b6000806002836040518082805190602001908083835b602083106112895780518252601f19909201916020918201910161126a565b51815160209384036101000a600019018019909216911617905292019485525060405193849003019092206005015495945050505050565b60006001826040518082805190602001908083835b602083106112f55780518252601f1990920191602091820191016112d6565b51815160209384036101000a6000190180199092169116179052920194855250604051938490030190922054600160a060020a0316949350505050565b33600090815260208190526040902054811061134d57600080fd5b604051600160a060020a0383169082156108fc029083906000818181858888f19350505050158015611383573d6000803e3d6000fd5b50336000908152602081905260409020805491909103905550565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106113df57805160ff191683800117855561140c565b8280016001018555821561140c579182015b8281111561140c5782518255916020019190600101906113f1565b5061141892915061141c565b5090565b5b80821115611418576000815560010161141d56fea264697066735822122042f490710ff37a0c7182d40323feb56a3e7841d820589fbc68175f773cd7a78564736f6c63430007010033";
+
+    public static final String FUNC_BALANCEOF = "balanceOf";
+
+    public static final String FUNC_BALANCEOFACCOUNT = "balanceOfAccount";
+
+    public static final String FUNC_CHECKIFACCESSINSERVICE = "checkIfAccessInService";
+
+    public static final String FUNC_CREATESERVICE = "createService";
+
+    public static final String FUNC_GETADDRESSFROMID = "getAddressFromId";
+
+    public static final String FUNC_GETRATING = "getRating";
+
+    public static final String FUNC_GETRECOMMENDATION = "getRecommendation";
+
+    public static final String FUNC_GETSERVICE = "getService";
+
+    public static final String FUNC_INVEST = "invest";
+
+    public static final String FUNC_PAYSERVICE = "payService";
+
+    public static final String FUNC_RATESERVICE = "rateService";
+
+    public static final String FUNC_SETADDRESSFROMID = "setAddressFromId";
+
+    public static final String FUNC_SETCID = "setCid";
+
+    public static final String FUNC_SETRECOMMENDATION = "setRecommendation";
+
+    @Deprecated
+    protected ServiceContract(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
+        super(BINARY, contractAddress, web3j, credentials, gasPrice, gasLimit);
+    }
+
+    protected ServiceContract(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+        super(BINARY, contractAddress, web3j, credentials, contractGasProvider);
+    }
+
+    @Deprecated
+    protected ServiceContract(String contractAddress, Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
+        super(BINARY, contractAddress, web3j, transactionManager, gasPrice, gasLimit);
+    }
+
+    protected ServiceContract(String contractAddress, Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
+        super(BINARY, contractAddress, web3j, transactionManager, contractGasProvider);
+    }
+
+    public RemoteFunctionCall<BigInteger> balanceOf() {
+        final Function function = new Function(FUNC_BALANCEOF, 
+                Arrays.<Type>asList(), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
+        return executeRemoteCallSingleValueReturn(function, BigInteger.class);
+    }
+
+    public RemoteFunctionCall<BigInteger> balanceOfAccount() {
+        final Function function = new Function(FUNC_BALANCEOFACCOUNT, 
+                Arrays.<Type>asList(), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
+        return executeRemoteCallSingleValueReturn(function, BigInteger.class);
+    }
+
+    public RemoteFunctionCall<Boolean> checkIfAccessInService(String serviceId) {
+        final Function function = new Function(FUNC_CHECKIFACCESSINSERVICE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId)), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Bool>() {}));
+        return executeRemoteCallSingleValueReturn(function, Boolean.class);
+    }
+
+    public RemoteFunctionCall<TransactionReceipt> createService(String serviceId, BigInteger price, String password) {
+        final Function function = new Function(
+                FUNC_CREATESERVICE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId), 
+                new org.web3j.abi.datatypes.generated.Uint256(price), 
+                new org.web3j.abi.datatypes.Utf8String(password)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteFunctionCall<String> getAddressFromId(String serviceId) {
+        final Function function = new Function(FUNC_GETADDRESSFROMID, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId)), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}));
+        return executeRemoteCallSingleValueReturn(function, String.class);
+    }
+
+    public RemoteFunctionCall<BigInteger> getRating(String serviceId) {
+        final Function function = new Function(FUNC_GETRATING, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId)), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
+        return executeRemoteCallSingleValueReturn(function, BigInteger.class);
+    }
+
+    public RemoteFunctionCall<List> getRecommendation(String serviceId) {
+        final Function function = new Function(FUNC_GETRECOMMENDATION, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId)), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<DynamicArray<Address>>() {}));
+        return new RemoteFunctionCall<List>(function,
+                new Callable<List>() {
+                    @Override
+                    @SuppressWarnings("unchecked")
+                    public List call() throws Exception {
+                        List<Type> result = (List<Type>) executeCallSingleValueReturn(function, List.class);
+                        return convertToNative(result);
+                    }
+                });
+    }
+
+    public RemoteFunctionCall<String> getService(String serviceId) {
+        final Function function = new Function(FUNC_GETSERVICE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId)), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Utf8String>() {}));
+        return executeRemoteCallSingleValueReturn(function, String.class);
+    }
+
+    public RemoteFunctionCall<TransactionReceipt> invest(BigInteger weiValue) {
+        final Function function = new Function(
+                FUNC_INVEST, 
+                Arrays.<Type>asList(), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function, weiValue);
+    }
+
+    public RemoteFunctionCall<TransactionReceipt> payService(String serviceId) {
+        final Function function = new Function(
+                FUNC_PAYSERVICE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteFunctionCall<TransactionReceipt> rateService(String serviceId, BigInteger rating) {
+        final Function function = new Function(
+                FUNC_RATESERVICE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId), 
+                new org.web3j.abi.datatypes.generated.Uint256(rating)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteFunctionCall<TransactionReceipt> setAddressFromId(String serviceId, String addr) {
+        final Function function = new Function(
+                FUNC_SETADDRESSFROMID, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId), 
+                new org.web3j.abi.datatypes.Address(160, addr)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteFunctionCall<TransactionReceipt> setCid(String serviceId, String cid) {
+        final Function function = new Function(
+                FUNC_SETCID, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId), 
+                new org.web3j.abi.datatypes.Utf8String(cid)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteFunctionCall<TransactionReceipt> setRecommendation(String serviceId) {
+        final Function function = new Function(
+                FUNC_SETRECOMMENDATION, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(serviceId)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    @Deprecated
+    public static ServiceContract load(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
+        return new ServiceContract(contractAddress, web3j, credentials, gasPrice, gasLimit);
+    }
+
+    @Deprecated
+    public static ServiceContract load(String contractAddress, Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
+        return new ServiceContract(contractAddress, web3j, transactionManager, gasPrice, gasLimit);
+    }
+
+    public static ServiceContract load(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+        return new ServiceContract(contractAddress, web3j, credentials, contractGasProvider);
+    }
+
+    public static ServiceContract load(String contractAddress, Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
+        return new ServiceContract(contractAddress, web3j, transactionManager, contractGasProvider);
+    }
+
+    public static RemoteCall<ServiceContract> deploy(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+        return deployRemoteCall(ServiceContract.class, web3j, credentials, contractGasProvider, BINARY, "");
+    }
+
+    @Deprecated
+    public static RemoteCall<ServiceContract> deploy(Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
+        return deployRemoteCall(ServiceContract.class, web3j, credentials, gasPrice, gasLimit, BINARY, "");
+    }
+
+    public static RemoteCall<ServiceContract> deploy(Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
+        return deployRemoteCall(ServiceContract.class, web3j, transactionManager, contractGasProvider, BINARY, "");
+    }
+
+    @Deprecated
+    public static RemoteCall<ServiceContract> deploy(Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
+        return deployRemoteCall(ServiceContract.class, web3j, transactionManager, gasPrice, gasLimit, BINARY, "");
+    }
+}
